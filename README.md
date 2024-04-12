@@ -8,7 +8,9 @@ Group Members:
 - Lila Sargent
 - Tovahn Vitols
 
-# What does the team name mean?
+___
+___
+## What does the team name mean?
 
 Merriam-Webster's defines vacuous as "marked by lack of ideas or intelligence". 
 
