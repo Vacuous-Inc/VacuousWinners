@@ -1,11 +1,14 @@
 package VacuousWinners;
 
+
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -14,8 +17,11 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTextArea;
+import VacuousWinners.GameLogic.*;
 
 public class GameScreen extends Screen{
+    private ChallengeControl gamecontrol;
+    private Player p = new Player("Player1");
 
     public GameScreen(JFrame f) {
         super(f);
@@ -33,16 +39,18 @@ public class GameScreen extends Screen{
         codeTop.setMinimumSize(new Dimension(0, 200));
         codeBottom.setMinimumSize(new Dimension(0, 200));
 
+        ArrayList<String> curr_challenge = gamecontrol.getNextChallenge();
+
         JTextArea codeInstructions = new JTextArea();
         codeInstructions.setEditable(false);
-        codeInstructions.setText(lipsum.lipsum);
+        codeInstructions.setText(curr_challenge.get(0));
         codeInstructions.setWrapStyleWord(true);
         codeInstructions.setLineWrap(true);
         codeInstructions.setFocusable(false);
         JScrollPane instructionsSroll = new JScrollPane(codeInstructions);
 
         JTextArea codeEditor = new JTextArea();
-        codeEditor.setText("Write your code here...");
+        codeEditor.setText(curr_challenge.get(1));
         JScrollPane codeScroll = new JScrollPane(codeEditor);
 
         codeTop.setLayout(new BoxLayout(codeTop, BoxLayout.Y_AXIS));
@@ -55,6 +63,7 @@ public class GameScreen extends Screen{
         submitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
+                gamecontrol.submitChallenge(codeEditor.getText(), p);
                 submitButton.setText("Submitted");
                 submitButton.setEnabled(false);
                 // todo submit code
