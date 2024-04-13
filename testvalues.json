@@ -67,7 +67,7 @@
     ["(())", "Parentheses are balanced!"],
     ["(", "Parentheses are not balanced!"],
     ["(He)(llo", "Parentheses are not balanced!"],
-    ["(Wh(at's) up( ) y'all)", "Parentheses are balanced!"]
+    ["(What's(up (with (you?))))", "Parentheses are balanced!"]
 ],
 "UNIT" : [
     ["" , true],
