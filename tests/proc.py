@@ -34,7 +34,7 @@ def run_flake8(submission, *, args: list[str], timeout=60, **kwargs):
     )
 
     if p.returncode == 1:
-        print(f'Deviations from PEP 8: \n{p.stdout}\n',
+        print('Deviations from PEP 8: \n' + p.stdout + '\n',
               file=sys.stderr)
     else:
         print('Submission conforms to PEP 8.')

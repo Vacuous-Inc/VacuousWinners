@@ -55,8 +55,8 @@ class TestTrig(unittest.TestCase):
         """This is run before each test. """
         self.score = 0
         if not self.target_file_present:
-            self.fail(f'Target file {self.target_file} not found! '
-                      f'File should be named {self.target_file}.')
+            self.fail('Target file ' + self.target_file + ' not found! '
+                      'File should be named ' + self.target_file + '.')
 
 
     def test_docstring_present(self):
@@ -141,7 +141,7 @@ class TestTrig(unittest.TestCase):
         if ok_count == len(all_procs):
             print('Program runs without raising errors. Return codes all 0.')
         else:
-            print(f'Only {ok_count} tests ran successfully.')
+            print('Only ' + ok_count + ' tests ran successfully.')
 
         setScore(score,self.player)
 
