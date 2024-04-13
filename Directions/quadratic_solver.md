@@ -1,0 +1,6 @@
+##Now let's put everything you've learned so far together 
+
+In quadratic_solver, you're going to create a function calc_discriminant(a, b, c) that returns the discriminant of a quadratic function with values a, b, c. Then, prompt the user for the a, b, and c of the quadratic equation.
+Next, if the disciminant is equal to 0, print "There is one real root the this equation: x", where x is the value of the solution to the equation (rounded to 3 decimal places). 
+If the discriminant if greater than 0, print "The two roots of the equation are x and y", where x & y are the 2 solutions to the equation (rounded to 3 decimal places).
+Finally, if the discriminant is less than 0, print "There are no real roots to this equation."
