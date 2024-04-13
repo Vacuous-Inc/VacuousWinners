@@ -16,7 +16,9 @@ TARGET_FILE = 'trig.py'
 with open("testvalues.json") as fh:
     tests = json.load(fh)["MY_FUNCTIONS_TESTER"]
 
-
+SQRT_TESTS = [x for x in tests["SQRT"]]
+HYP_TESTS = [x for x in tests["HYPOTENUSE"]]
+DEG_TESTS = [x for x in tests["DEG_REDUCE"]]
 
 
 def setScore(score,player):
@@ -38,7 +40,9 @@ class TestTrig(unittest.TestCase):
     player = ""
     target = TARGET_FILE
     target_present = False
-    world_procs = []
+    sqrt_procs = []
+    hyp_procs = []
+    deg_procs = []
 
     @classmethod
     def setUpClass(cls):
@@ -46,8 +50,12 @@ class TestTrig(unittest.TestCase):
         """This is run once to initialize class. """
         cls.target_file_present = Path(cls.target).is_file()
         if cls.target_file_present:
-            for test in TEST:
-                cls.world_procs.append(run(cls.target))
+            for test in SQRT_TESTS:
+                cls.sqrt_procs.append(run(cls.target),input_=f"{test[0]}\n")
+            for test in HYP_TESTS:
+                cls.hyp_procs.append(run(cls.target),input_=f"{test[0]}\n")
+            for test in DEG_TESTS:
+                cls.deg_procs.append(run(cls.target),input_=f"{test[0]}\n")
 
     def setUp(self):
         """This is run before each test. """
@@ -66,12 +74,12 @@ class TestTrig(unittest.TestCase):
         print(docstring)
         self.assertIsNotNone(docstring)
 
-    def test_print(self):
-        for pr in self.world_procs:
+    def test_sqrt(self):
+        for i,pr in enumerate(self.sqrt_procs):
             output = pr.stdout
             output.lower()
 
-            expected = TEST[0]
+            expected = SQRT_TESTS[i][1]
             actual = output
 
             if actual.find(expected) != -1:
@@ -80,7 +88,37 @@ class TestTrig(unittest.TestCase):
                 print(f"Expected to find '{expected}' in response "
                       f"(case-insensitive). \n"
                       f"Actual: {actual}")
-                
+
+    def test_deg(self):
+        for i,pr in enumerate(self.deg_procs):
+            output = pr.stdout
+            output.lower()
+
+            expected = SQRT_TESTS[i][1]
+            actual = output
+
+            if actual.find(expected) != -1:
+                setScore(1,self.player)
+            else:
+                print(f"Expected to find '{expected}' in response "
+                      f"(case-insensitive). \n"
+                      f"Actual: {actual}")
+
+    def test_hyp(self):
+        for i,pr in enumerate(self.hyp_procs):
+            output = pr.stdout
+            output.lower()
+
+            expected = SQRT_TESTS[i][2]
+            actual = output
+
+            if actual.find(expected) != -1:
+                setScore(1,self.player)
+            else:
+                print(f"Expected to find '{expected}' in response "
+                      f"(case-insensitive). \n"
+                      f"Actual: {actual}")   
+
 
 
     '''def test_no_magic_numbers(self):
