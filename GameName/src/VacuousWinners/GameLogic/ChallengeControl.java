@@ -3,8 +3,12 @@ package VacuousWinners.GameLogic;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Properties;
+
+import org.python.core.Py;
 import org.python.core.PyObject;
 import org.python.core.PyString;
+import org.python.core.PySystemState;
 import org.python.util.PythonInterpreter;
 
 public class ChallengeControl {
@@ -32,7 +36,7 @@ public class ChallengeControl {
 
 
         try{
-            FileWriter submit = new FileWriter("Test_Code"+challenges.get(curr_chal));
+            FileWriter submit = new FileWriter("Test_Code/"+urls[curr_chal]+".py");
             String write = String.format("'''%s'''\n%s",player.getName(),submission);
             submit.write(write);
             submit.close();
@@ -40,9 +44,18 @@ public class ChallengeControl {
             return;
         }      
 
-        try (PythonInterpreter pyInterpreter = new PythonInterpreter()) {
+        Properties props = new Properties();
+        
+        // Prevent the 'site' module from being imported on startup
+        props.setProperty("python.import.site", "false");
+
+         PythonInterpreter.initialize(System.getProperties(), props, new String[0]);
+
+        try (PythonInterpreter pyInterpreter = new PythonInterpreter(null, new PySystemState())) {
+            
+
             // Load the Python script
-            pyInterpreter.execfile(urls[curr_chal]+"Test.py");
+            pyInterpreter.execfile("tests/"+urls[curr_chal]+"Test.py");
             
             // Get the Python function object
             PyObject pyFunction = pyInterpreter.get("run");

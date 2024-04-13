@@ -11,7 +11,7 @@ from proc import run, run_flake8
 
 TIMEOUT = 15  # seconds
 ENCODING = 'UTF8'
-TARGET_FILE = 'helloworld.py'
+TARGET_FILE = 'Test_Code/HelloWorld.py'
 
 TEST = ["hello world"]
 
@@ -46,9 +46,9 @@ class TestHelloWorld(unittest.TestCase):
     def setUp(self):
         """This is run before each test. """
         self.score = 0
-        if not self.target_file_present:
-            self.fail(f'Target file {self.target_file} not found! '
-                      f'File should be named {self.target_file}.')
+        #if not self.target_file_present:
+            #self.fail(f'Target file {self.target_file} not found! '
+             #         f'File should be named {self.target_file}.')
 
 
     def test_docstring_present(self):
@@ -71,9 +71,9 @@ class TestHelloWorld(unittest.TestCase):
             if actual.find(expected) != -1:
                 setScore(1,self.player)
             else:
-                print(f"Expected to find '{expected}' in response "
-                      f"(case-insensitive). \n"
-                      f"Actual: {actual}")
+                print("Expected to find '"+expected+"' in response ")
+                     # f"(case-insensitive). \n"
+                     # f"Actual: {actual}")
                 
 
     def test_return_code(self):
@@ -86,12 +86,12 @@ class TestHelloWorld(unittest.TestCase):
                 score += 1
                 ok_count += 1
             else:
-                print("Test failed with non-zero exit code.", file=sys.stderr)
+                print("Test failed with non-zero exit code.")
                 # TODO Maybe a little explanation is in order (e.g., failed on 999)
         if ok_count == len(all_procs):
             print('Program runs without raising errors. Return codes all 0.')
         else:
-            print(f'Only {ok_count} tests ran successfully.')
+            print('Only '+ ok_count+ ' tests ran successfully.')
 
         setScore(score,self.player)
 
