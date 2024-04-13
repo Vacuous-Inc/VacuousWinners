@@ -52,20 +52,20 @@ class TestTreeID(unittest.TestCase):
         cls.target_file_present = Path(cls.target_file).is_file()
         if cls.target_file_present:
             for test in BASIC_TESTS:
-                cls.basic_procs.append(run(cls.target_file,input_=f"{test[0]}\n"
-                                                                f"{test[1]}\n"))
+                cls.basic_procs.append(run(cls.target_file,input_= test[0] + "\n"
+                                                                test[1] + "\n"))
             for test in INVALID_L_TESTS:
-                cls.invalid_l_procs.append(run(cls.target_file,input_=f"{test[0]}\n"))
+                cls.invalid_l_procs.append(run(cls.target_file,input_= test[0] + "\n"))
             for test in INVALID_M_TESTS:
-                cls.invalid_m_procs.append(run(cls.target_file,input_=f"{test[0]}\n"
-                                                                f"{test[1]}\n"))
+                cls.invalid_m_procs.append(run(cls.target_file,input_= test[0] + "\n"
+                                                                test[1] + "\n"))
 
     def setUp(self):
         """This is run before each test. """
         self.score = 0
         if not self.target_file_present:
-            self.fail(f'Target file {self.target_file} not found! '
-                      f'File should be named {self.target_file}.')
+            self.fail('Target file ' + self.target_file + ' not found! '
+                      'File should be named ' + self.target_file + '.')
 
 
     def test_docstring_present(self):
@@ -90,9 +90,9 @@ class TestTreeID(unittest.TestCase):
             if actual.find(expected) != -1:
                 setScore(1,self.player)
             else:
-                print(f"Expected to find '{expected}' in response "
-                      f"(case-insensitive). \n"
-                      f"Actual: {actual}")
+                print("Expected to find '" + expected + "' in response " +
+                      "(case-insensitive). \n" +
+                      "Actual: " + actual)
 
     def test_invalid_l(self):
         for i,pr in enumerate(self.invalid_l_procs):
@@ -105,9 +105,9 @@ class TestTreeID(unittest.TestCase):
             if actual.find(expected) != -1:
                 setScore(1,self.player)
             else:
-                print(f"Expected to find '{expected}' in response "
-                      f"(case-insensitive). \n"
-                      f"Actual: {actual}")
+                print("Expected to find '" + expected + "' in response "
+                      "(case-insensitive). \n" +
+                      "Actual: " + actual)
 
     def test_hyp(self):
         for i,pr in enumerate(self.invalid_m_procs):
@@ -120,9 +120,9 @@ class TestTreeID(unittest.TestCase):
             if actual.find(expected) != -1:
                 setScore(1,self.player)
             else:
-                print(f"Expected to find '{expected}' in response "
-                      f"(case-insensitive). \n"
-                      f"Actual: {actual}")
+                print("Expected to find '" + expected + "' in response " +
+                      "(case-insensitive). \n" +
+                      "Actual: " + actual)
 
 
 
@@ -170,7 +170,7 @@ class TestTreeID(unittest.TestCase):
         if ok_count == len(all_procs):
             print('Program runs without raising errors. Return codes all 0.')
         else:
-            print(f'Only {ok_count} tests ran successfully.')
+            print('Only ' + ok_count + ' tests ran successfully.')
 
         setScore(score,self.player)
 
