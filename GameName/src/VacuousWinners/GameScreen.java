@@ -21,7 +21,7 @@ import javax.swing.JTextArea;
 import VacuousWinners.GameLogic.*;
 
 public class GameScreen extends Screen{
-    private ChallengeControl gamecontrol;
+    private ChallengeControl gamecontrol = new ChallengeControl();
     private Player p = new Player("Player1");
 
     public GameScreen(JFrame f) {

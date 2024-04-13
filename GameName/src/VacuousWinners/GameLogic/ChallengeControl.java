@@ -15,7 +15,7 @@ public class ChallengeControl {
 
     public ChallengeControl(){
         for (String url:urls){
-        challenges.add(new Challenge("Directions/"+url+".md","Prompts/"+url+".py"));
+        challenges.add(new Challenge("Directions/"+url+".txt","Prompts/"+url+".py"));
         }
     }
     
