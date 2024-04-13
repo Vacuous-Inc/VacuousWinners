@@ -16,11 +16,19 @@
 ],
 
 "SPHERE_TESTS":
+{
+     "PROG" :
 [
+
     [1, ["The surface area of the sphere is 12.57", "The volume of the sphere is 4.19"]],
     [22, ["The surface area of the sphere is 6082.12", "The volume of the sphere is 44602.24"]],
     [9, ["The surface area of the sphere is 107.88", "The volume of the sphere is 3053.63"]]
 ],
+"UNIT" :[
+    [1,[12.57,4.19]],
+    [3,[113.10,113.10]],
+    [69, [59828.49,1376055.28]]
+]},
 
 "TRIG":
 {
@@ -44,6 +52,7 @@
 },
 
 "BALANCED_TESTER":
+{"PROG":
 [
     ["", "Parentheses are balanced!"],
     ["(())", "Parentheses are balanced!"],
@@ -51,6 +60,13 @@
     ["(He)(llo", "Parentheses are not balanced!"],
     ["(Wh(at's) up( ) y'all)", "Parentheses are balanced!"]
 ],
+"UNIT" : [
+    ["" , true],
+    ["((()))", true],
+    ["(Wh(at's) up( ) y'all)", true],
+    ["(Wh(at's) up() ) y'all)", false],
+    ["))))", false]
+]},
 
 "TREE_IDENTIFIER_TESTER":
 [
