@@ -1,22 +1,18 @@
-#Lists
-
+Lists
 A list is a sequence of elements, separated with commas.
 Here are some examples:
 scores = [91, 100, 72, 88]
 names = ["Tov", "Lila", "Aurelia", "Alexis"]
 
-###Accessing Individual Elements in a List
+Accessing Individual Elements in a List
 
 Lists are ordered, and, due to this, every element has a corresponding index, starting at 0. The first element of a list has an index of 0, the second has an index of 1, etc. You can also go backwards, and thus the last element of a list also has an index of -1. Let's say we wanted to make *x* be the value of the third item in list *lst*. In order to do that, we should write:
 x = lst[4]
 
-###List Functions
+List Functions
 sum() --> calculate sum of elements
-
 len() --> returns number of elements
-
 max() --> returns largest value
-
 min() --> returns smallest values
 
 EX:
@@ -24,12 +20,10 @@ lst = [1, 2, 3, 4]
 len(lst) would equal 4
 
 .sort() --> sorts list
-
 .append() --> appends an item to end list unless given an index value
-
 .pop() --> returns value of last element of the list unless given an index value. Removes said element from list
 
-#Try it Yourself!
+Try it Yourself!
 
 Recamán's sequence is a well known sequence defined by a recurrence relation within mathematics and computer science. The function is defined by:
 If there is only one element in the list, the next value in the sequence is 0. If the last element in the list - the length of the list is greater than 0 and not already in the list, the next value in the sequence is equal to (last element in the list - the length of the list). Otherwise the next value in the sequence is (last element in the list + length of list).

@@ -1,4 +1,4 @@
-#Boolean Logic
+Boolean Logic
 As previously mentioned, booleans have a value of either True or False. We can then put them into boolean expressions.
 Examples:
 True    =   True
@@ -19,7 +19,7 @@ The “or” function (||)
 The “not” function (!)
 - Reverses the state of an expression
 
-##Comparison Operators
+Comparison Operators
 Compare 2 objects
 
 Examples:
@@ -34,7 +34,7 @@ So 5 > 6 is False
 8 > 6 is True
 "Hello" != "Sup" is True
 
-#If, Else, and Elif Statements
+If, Else, and Elif Statements
 Now it's time for everyone's favorite part of programming, if-else statements. These work with boolean expressions to determine which branch will execute. Let's start with a simple if else statement. Let's say we want tell the user whether or not a is greater than b. In that case, we would write:
 
 if(a > b):
@@ -44,7 +44,7 @@ else:
 
 The program will check to see whether the first expression is true and will execute the code within the *if* statement if it is. Otherwise, it will execute the code in the *else* statement.
 
-###Elif statements
+Elif statements
 But sometimes we need to check multiple expressions in one go. That's where the *elif* statement comes in. Basically, it will give Python another expression to check, after it has checked the *if* statement.
 Let's say we want to write a code that tells the user what their grade is. In that case, we would write:
 if(a >= 90):
