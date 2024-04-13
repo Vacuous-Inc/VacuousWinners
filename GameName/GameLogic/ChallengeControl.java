@@ -1,4 +1,9 @@
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
+import org.python.core.PyObject;
+import org.python.core.PyString;
+import org.python.util.PythonInterpreter;
 
 public class ChallengeControl {
 
@@ -21,8 +26,40 @@ public class ChallengeControl {
 
     }
 
-    public void submitChallenge(String submission){
+    public void submitChallenge(String submission, Player player){
+
+
+        try{
+            FileWriter submit = new FileWriter("Test_Code"+challenges.get(curr_chal));
+            String write = String.format("'''%s'''\n%s",player.getName(),submission);
+            submit.write(write);
+            submit.close();
+        }catch (IOException e){
+            return;
+        }      
+
+        try (PythonInterpreter pyInterpreter = new PythonInterpreter()) {
+            // Load the Python script
+            pyInterpreter.execfile(urls[curr_chal]+"Test.py");
+            
+            // Get the Python function object
+            PyObject pyFunction = pyInterpreter.get("run");
+            
+            // Call the Python function with an argument
+            PyObject pyObjectReturn = pyFunction.__call__();
+            
+            // Convert the return value to a Java string
+            String returnValue = pyObjectReturn.toString();
+
+            player.addCoins(Integer.parseInt(returnValue));
+            
+            System.out.println(returnValue); // Prints: Hello, John Doe
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         curr_chal ++;
+
     }
 
 }

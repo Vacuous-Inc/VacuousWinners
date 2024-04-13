@@ -15,12 +15,10 @@ TARGET_FILE = 'helloworld.py'
 
 TEST = ["hello world"]
 
-def setScore(score,player):
-        with open("savestate.json","r") as fh:
-            p = json.load(fh)
-        with open("savestate.json","w") as fh:   
-            p["coins"] += score
-            json.dump(p,fh)
+score = 0
+
+def setScore(s):
+        score += 1;
 
 if os.environ.get('GS_LOCAL') == 'true':
     print("Running locally...")
@@ -78,36 +76,6 @@ class TestHelloWorld(unittest.TestCase):
                       f"Actual: {actual}")
                 
 
-
-    '''def test_no_magic_numbers(self):
-        """Verify that there is no magic number (element_lookup.py). """
-        with open(self.target_file, 'r') as fh:
-            tree = ast.parse(fh.read())
-            constants = [x for x in ast.walk(tree)
-                         if isinstance(x, ast.Constant)]
-            for constant in constants:
-                if constant.value in [116, 117, 118, 119, 120]:
-                    print(f"I see a magic number "
-                          f"in your code ({constant.value}).")'''
-
-
-    '''def test_invalid_input(self, set_score):
-        score = 0
-
-        for i, proc in enumerate(self.opt_procs):  # iterate through runs
-            output = proc.stdout.split(': ')
-            output = [s.lower() for s in output]
-
-            expected = OPT_TESTS[i][2][0]
-            actual = output[-1]
-
-            if actual.find(expected) != -1:
-                score += weight_ / len(self.num_procs)
-            else:
-                print(f"Expected to find '{expected}' in response "
-                      f"(case-insensitive). \n"
-                      f"Actual: {actual}")'''
-
     def test_return_code(self):
         """Verify program runs without error (element_lookup.py). """
         ok_count = 0
@@ -128,7 +96,6 @@ class TestHelloWorld(unittest.TestCase):
         setScore(score,self.player)
 
 
-if __name__ == '__main__':
-    suite = unittest.defaultTestLoader.discover('tests')
-    #with open(results_path, 'w') as fh:
+def run():
     unittest.main()
+    return score;

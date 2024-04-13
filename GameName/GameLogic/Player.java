@@ -7,14 +7,20 @@ public class Player {
     private final int DEF_POINTS = 3;
     private final int DEF_LEVEL = 1;
     private final int DEF_COINS = 0;
+    private String name;
 
-    public Player() {
+    public Player(String name) {
         weapon = DEF_WEAPON;
         armor = DEF_ARMOR;
         skill = DEF_SKILL;
         points = DEF_POINTS;
         level = DEF_LEVEL;
         coins = DEF_COINS;
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public int getWeapon() {
