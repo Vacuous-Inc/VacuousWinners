@@ -6,15 +6,16 @@ from pathlib import Path
 import sys
 import unittest
 import json
+import math
 
 from proc import run, run_flake8
 
 TIMEOUT = 15  # seconds
 ENCODING = 'UTF8'
-TARGET_FILE = 'trig.py'
+TARGET_FILE = 'Test_Code/trig.py'
 
 with open("testvalues.json") as fh:
-    tests = json.load(fh)["MY_FUNCTIONS_TESTER"]
+    tests = json.load(fh)["TRIG"]
 
 SQRT_TESTS = [x for x in tests["SQRT"]]
 HYP_TESTS = [x for x in tests["HYPOTENUSE"]]
@@ -38,7 +39,7 @@ else:
 class TestTrig(unittest.TestCase):
    
     player = ""
-    target = TARGET_FILE
+    target_file = TARGET_FILE
     target_present = False
     sqrt_procs = []
     hyp_procs = []
@@ -48,14 +49,14 @@ class TestTrig(unittest.TestCase):
     def setUpClass(cls):
         
         """This is run once to initialize class. """
-        cls.target_file_present = Path(cls.target).is_file()
+        cls.target_file_present = Path(cls.target_file).is_file()
         if cls.target_file_present:
             for test in SQRT_TESTS:
-                cls.sqrt_procs.append(run(cls.target),input_=f"{test[0]}\n")
+                cls.sqrt_procs.append(run(cls.target_file,input_=f"{test[0]}\n"))
             for test in HYP_TESTS:
-                cls.hyp_procs.append(run(cls.target),input_=f"{test[0]}\n")
+                cls.hyp_procs.append(run(cls.target_file,input_=f"{test[0]}\n"))
             for test in DEG_TESTS:
-                cls.deg_procs.append(run(cls.target),input_=f"{test[0]}\n")
+                cls.deg_procs.append(run(cls.target_file,input_=f"{test[0]}\n"))
 
     def setUp(self):
         """This is run before each test. """
@@ -67,7 +68,7 @@ class TestTrig(unittest.TestCase):
 
     def test_docstring_present(self):
         """Verify docstring is present (element_lookup.py). """
-        with open(self.target, 'r') as fh:
+        with open(self.target_file, 'r') as fh:
             tree = ast.parse(fh.read())
         docstring = ast.get_docstring(tree)
         self.player = docstring
@@ -75,10 +76,12 @@ class TestTrig(unittest.TestCase):
         self.assertIsNotNone(docstring)
 
     def test_sqrt(self):
+        '''
         for i,pr in enumerate(self.sqrt_procs):
             output = pr.stdout
             output.lower()
 
+        
             expected = SQRT_TESTS[i][1]
             actual = output
 
@@ -87,14 +90,24 @@ class TestTrig(unittest.TestCase):
             else:
                 print(f"Expected to find '{expected}' in response "
                       f"(case-insensitive). \n"
-                      f"Actual: {actual}")
+                      f"Actual: {actual}")'''
+        num = 3
+        try:
+            import Test_Code.trig as trig
+        except ImportError:
+            return
+        for i in range(num):
+            expected = SQRT_TESTS[i][1]
+            actual = trig.sqrt(SQRT_TESTS[i][0])
+            if math.isclose(expected,actual):
+                setScore(1,self.player)
 
     def test_deg(self):
-        for i,pr in enumerate(self.deg_procs):
+        '''for i,pr in enumerate(self.deg_procs):
             output = pr.stdout
             output.lower()
 
-            expected = SQRT_TESTS[i][1]
+            expected = DEG_TESTS[i][1]
             actual = output
 
             if actual.find(expected) != -1:
@@ -102,14 +115,25 @@ class TestTrig(unittest.TestCase):
             else:
                 print(f"Expected to find '{expected}' in response "
                       f"(case-insensitive). \n"
-                      f"Actual: {actual}")
+                      f"Actual: {actual}")'''
+        
+        num = 4
+        try:
+            import Test_Code.trig as trig
+        except ImportError:
+            return
+        for i in range(num):
+            expected = DEG_TESTS[i][1]
+            actual = trig.deg_reduce(DEG_TESTS[i][0])
+            if math.isclose(expected,actual):
+                setScore(1,self.player)
 
     def test_hyp(self):
-        for i,pr in enumerate(self.hyp_procs):
+        '''for i,pr in enumerate(self.hyp_procs):
             output = pr.stdout
             output.lower()
 
-            expected = SQRT_TESTS[i][2]
+            expected = HYP_TESTS[i][2]
             actual = output
 
             if actual.find(expected) != -1:
@@ -117,7 +141,17 @@ class TestTrig(unittest.TestCase):
             else:
                 print(f"Expected to find '{expected}' in response "
                       f"(case-insensitive). \n"
-                      f"Actual: {actual}")   
+                      f"Actual: {actual}") '''
+        num = 3
+        try:
+            import Test_Code.trig as trig
+        except ImportError:
+            return
+        for i in range(num):
+            expected = HYP_TESTS[i][2]
+            actual = trig.hypotenuse(HYP_TESTS[i][0],HYP_TESTS[i][1])
+            if math.isclose(expected,actual):
+                setScore(1,self.player)  
 
 
 
@@ -154,7 +188,7 @@ class TestTrig(unittest.TestCase):
         """Verify program runs without error (element_lookup.py). """
         ok_count = 0
         score = 0
-        all_procs = self.world_procs
+        all_procs = self.sqrt_procs + self.hyp_procs + self.deg_procs
         for proc in all_procs:
             if proc.returncode == 0:
                 score += 1
