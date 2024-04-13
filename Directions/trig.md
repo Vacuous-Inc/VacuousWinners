@@ -1,0 +1,67 @@
+#Types and Literals
+##Everything in Python has a *type*, each with a specific purpose
+
+##Commonly Used Types
+Int or integer: 1, -32, 0
+- Whole numbers
+Float: 3.14159265, 0.333333, 1.0, -2.5
+- Numbers with decimals
+str or string: "Hello", "Python", "Vacuous Winners"
+- Sequences of characters
+bool or Boolean: True, False
+- True or False
+tuple: (), (1, 2, 3), ("a", "b", "c")
+- Immutable (unable to be changed) sequences of values
+list: [], [1, 2, 3], ["a", "b", "c"]
+- Mutable (able to be changed) sequence of values
+
+#Variables
+A *variable* is a name that correspondes with a specific value. We use an *assignment operator* (=) to assign this value to the name.
+
+For example:
+When we write:
+a = 3
+*a* now has the value of 3. But just because *a* is an integer right now, doesn't mean it always has to be. Python is dynamically typed, meaning that the type of variable can change at runtime. So we can also write:
+a = "Hi"
+without any problems.
+
+#Arithmetic Operators
+"+" --> Addition
+"-" --> Subtraction
+"*" --> Multiplication
+"/" --> Division
+
+"//" --> Integer or "floor" division
+- Removes decimans
+"%" --> Remainder or Modulus
+- Returns remainder
+"**" --> Exponentiation
+- Put a number to a power
+
+###Examples:
+40 + 2 = 42
+5 - 1 = 4
+30 / 4 = 7
+30 % 4 = 2
+2**3 = 8
+
+#Functions
+###A *function* is code that performs a task
+Such as *print()* which you saw in the last assignment
+Let's say you wanted a funciton *increase()*, that would add 1 to any number. To start with, you would need to define the function:
+def increase(x):
+The *def* keyword tells Python that we're definining a function
+The x is out parameter variable, or the value that we are passing to the function. We need to pass this variable to the increase() because functions are unable to access variables that have not been passed or created within them.
+Now that we've defined the function, let's finish it:
+def increase():
+    return x + 1;
+Anything indented after the definition of the function is the body of it. Python knows that once the code isn't indented, the function has ended.
+What does return mean? Return marks the end of a function, as well as what is being passed back to your general program. The body of your program can also only access variables that have been passed to or created in them, so returning variables is typically necessary.
+Now how do we call this function? If we wanted to add 1 to the value 2, all we have to do is write:
+increase(2)
+
+#Practice:
+Write three functions: sqrt(x), hypotenuse(a, b), and deg_reduce(x).
+sqrt(x) should return the square root of x.
+hypotenuse(a,b) should return the value of the hypotenuse of a triangle with leg-lengths a & b.
+deg_reduce(x) should return the number of degrees x is away from the beginning of the circle, ignoring complete rotations
