@@ -1,7 +1,9 @@
 package VacuousWinners.GameLogic;
 
+import java.io.BufferedReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Properties;
 
@@ -44,33 +46,36 @@ public class ChallengeControl {
             return;
         }      
 
-        Properties props = new Properties();
+        String pythonScriptPath = "/tests/"+urls[curr_chal]+".py";
+
+        String[] cmd = new String[]{"python", pythonScriptPath};
         
-        // Prevent the 'site' module from being imported on startup
-        props.setProperty("python.import.site", "false");
-
-         PythonInterpreter.initialize(System.getProperties(), props, new String[0]);
-
-        try (PythonInterpreter pyInterpreter = new PythonInterpreter(null, new PySystemState())) {
+        // Use ProcessBuilder to start a new process running the Python script
+        ProcessBuilder pb = new ProcessBuilder(cmd);
+        
+        try {
+            Process p = pb.start();
             
-
-            // Load the Python script
-            pyInterpreter.execfile("tests/"+urls[curr_chal]+"Test.py");
+            // Capture and print the script's output
+            BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));
+            String line;
+            while ((line = in.readLine()) != null) {
+                System.out.println(line);
+            }
             
-            // Get the Python function object
-            PyObject pyFunction = pyInterpreter.get("run");
+            // Wait for the process to finish and check the exit value
+            int exitValue = p.waitFor();
+            if (exitValue == 0) {
+                System.out.println("Execution successful");
+            } else {
+                System.out.println("Execution failed with exit code: " + exitValue);
+            }
             
-            // Call the Python function with an argument
-            PyObject pyObjectReturn = pyFunction.__call__();
-            
-            // Convert the return value to a Java string
-            String returnValue = pyObjectReturn.toString();
-
-            player.addCoins(Integer.parseInt(returnValue));
-            
-            System.out.println(returnValue); // Prints: Hello, John Doe
-        } catch (Exception e) {
+        } catch (IOException e) {
             e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+            Thread.currentThread().interrupt();
         }
 
         curr_chal ++;

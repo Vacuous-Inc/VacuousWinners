@@ -15,10 +15,6 @@ TARGET_FILE = 'Test_Code/HelloWorld.py'
 
 TEST = ["hello world"]
 
-score = 0
-
-def setScore(s):
-        score += 1;
 
 if os.environ.get('GS_LOCAL') == 'true':
     print("Running locally...")
@@ -29,6 +25,7 @@ else:
 
 class TestHelloWorld(unittest.TestCase):
    
+    score = 0
     player = ""
     target = TARGET_FILE
     target_present = False
@@ -50,6 +47,8 @@ class TestHelloWorld(unittest.TestCase):
             #self.fail(f'Target file {self.target_file} not found! '
              #         f'File should be named {self.target_file}.')
 
+    def setScore(s):
+        score += 1
 
     def test_docstring_present(self):
         """Verify docstring is present (element_lookup.py). """
@@ -69,7 +68,7 @@ class TestHelloWorld(unittest.TestCase):
             actual = output
 
             if actual.find(expected) != -1:
-                setScore(1,self.player)
+                self.setScore(1)
             else:
                 print("Expected to find '"+expected+"' in response ")
                      # f"(case-insensitive). \n"
@@ -93,9 +92,11 @@ class TestHelloWorld(unittest.TestCase):
         else:
             print('Only '+ ok_count+ ' tests ran successfully.')
 
-        setScore(score,self.player)
+        self.setScore(score)
 
 
-def run():
+def test():
     unittest.main()
-    return score;
+
+if __name__ == "__main__":
+    test()
