@@ -1,3 +1,5 @@
+package VacuousWinners.GameLogic;
+
 public class Shop { 
     private int weaponPrice, armorPrice, skillPrice;
 

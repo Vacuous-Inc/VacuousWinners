@@ -1,3 +1,5 @@
+package VacuousWinners.GameLogic;
+
 public class Opponent {
     private int weapon, armor, skill, level, points;
     private String tip;

@@ -1,3 +1,5 @@
+package VacuousWinners.GameLogic;
+
 public class Battle {
     private int playerHealth, opponentHealth;
 

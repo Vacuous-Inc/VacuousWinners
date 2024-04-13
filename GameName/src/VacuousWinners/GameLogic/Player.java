@@ -1,3 +1,5 @@
+package VacuousWinners.GameLogic;
+
 public class Player {
     private int weapon, armor, skill, points, level, coins;
     
