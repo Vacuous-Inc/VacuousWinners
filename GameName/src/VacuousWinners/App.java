@@ -15,7 +15,7 @@ public class App {
         TitleScreen title = new TitleScreen(frame);
         title.draw();
 
-        frame.setSize(1400, 800);
+        frame.setSize(1920, 1080);
 
         //Display the window.
         frame.setVisible(true);

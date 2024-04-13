@@ -1,0 +1,16 @@
+package VacuousWinners;
+
+public class lipsum {
+    public final static String lipsum = """
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut iaculis erat rutrum volutpat tincidunt. Ut tortor dui, dapibus id elit ut, aliquet maximus eros. Nulla suscipit iaculis neque, sed laoreet libero pulvinar ac. Sed a enim vitae dolor laoreet faucibus. Cras non erat venenatis, rhoncus sapien eu, malesuada sem. Quisque euismod tincidunt purus ut eleifend. Aliquam volutpat viverra libero, vel eleifend mauris lacinia eu. Nam accumsan malesuada consectetur. Quisque nec mauris id ipsum hendrerit condimentum a a magna. Nulla ullamcorper leo a diam tempor, sit amet ultrices lectus viverra. Donec sit amet ex dictum, finibus ex non, sodales augue. Ut eros leo, sodales ut consectetur id, egestas nec nulla. Phasellus eu turpis nisl. Donec ut enim id magna rutrum scelerisque. Donec turpis dolor, vehicula id lobortis mollis, vehicula ac ante.
+    
+        Proin scelerisque mauris vulputate est aliquet, ac ornare erat convallis. Donec aliquam tempor velit, in dapibus nibh mattis in. Integer eget sem in turpis pellentesque laoreet facilisis vitae massa. Proin semper volutpat congue. Maecenas rhoncus erat ipsum, in tempor est iaculis consequat. Pellentesque iaculis urna augue, et varius sapien euismod vel. Cras in ultricies justo. Aliquam at viverra enim. Maecenas gravida elit magna, nec scelerisque nisl tincidunt ac. Nam tristique odio at felis placerat maximus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; In a augue lacus. Cras suscipit et dolor eget scelerisque. Aliquam ornare nisi sit amet justo mollis, sed gravida diam sagittis. Mauris elementum diam tempor urna lacinia sodales. Suspendisse potenti.
+        
+        Donec congue blandit vestibulum. Maecenas ac mauris nulla. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Donec auctor tempor consequat. Integer egestas mollis nunc. Curabitur sit amet neque urna. Ut sapien lorem, dapibus condimentum porta in, lobortis vitae metus.
+        
+        Donec vel ullamcorper dolor. Proin tristique suscipit mi non volutpat. Mauris magna sapien, maximus ut ante feugiat, sollicitudin iaculis odio. Sed sit amet orci quis nisl egestas venenatis in et diam. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum facilisis vehicula lacus, non vestibulum massa imperdiet et. Cras placerat eros eget neque sagittis blandit. Nulla euismod tristique turpis. Etiam accumsan pellentesque velit at finibus. Vivamus in ultrices eros, ac dictum libero. Vestibulum id hendrerit ipsum.
+        
+        Vestibulum semper lorem neque, quis venenatis tortor dictum condimentum. Aenean venenatis, tellus et euismod suscipit, est erat volutpat lorem, in consectetur massa felis feugiat eros. Suspendisse et blandit diam, at dapibus turpis. Praesent ultrices rutrum lacus, sed sagittis magna laoreet et. Proin tristique scelerisque metus sit amet vestibulum. Donec tempus nunc id nibh pretium auctor. Duis nulla neque, feugiat ac ligula et, dignissim egestas nibh. Quisque ac porta erat, sit amet gravida diam. Integer tristique quis ex vitae vehicula. Duis a aliquam orci, in dapibus justo. "
+    
+            """;
+   }
