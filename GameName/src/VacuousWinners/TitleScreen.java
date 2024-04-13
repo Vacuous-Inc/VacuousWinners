@@ -5,10 +5,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
-import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -17,9 +14,9 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
-public class TitleScreen extends Screen {
+import VacuousWinners.ImageHandler.ImageName;
 
-    final static String BUTTON_LOCATION = "GameName/images/button.jpg";
+public class TitleScreen extends Screen {
     
     public TitleScreen(JFrame f) {
         super(f);
@@ -38,9 +35,7 @@ public class TitleScreen extends Screen {
 
         frame.add(Box.createRigidArea(new Dimension(0,50)));
 
-        BufferedImage buttonIcon = ImageIO.read(new File(BUTTON_LOCATION));
-    
-        JButton button = new JButton(new ImageIcon(buttonIcon));
+        JButton button = new JButton(new ImageIcon(ImageHandler.getImage(ImageName.START)));
         button.setAlignmentX(Component.CENTER_ALIGNMENT);
         button.setBorder(BorderFactory.createEmptyBorder());
         frame.add(button);

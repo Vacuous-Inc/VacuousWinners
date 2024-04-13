@@ -6,10 +6,12 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
@@ -31,7 +33,10 @@ public class GameScreen extends Screen{
         JPanel codeTop = new JPanel();
         JPanel codeBottom = new JPanel();
         codeTop.setMinimumSize(new Dimension(0, 200));
+        codeTop.setPreferredSize(new Dimension(0, 500));
+
         codeBottom.setMinimumSize(new Dimension(0, 200));
+        codeBottom.setPreferredSize(new Dimension(0, 500));
 
         JTextArea codeInstructions = new JTextArea();
         codeInstructions.setEditable(false);
@@ -70,8 +75,28 @@ public class GameScreen extends Screen{
 
         codeArea.setTopComponent(codeTop);
         codeArea.setBottomComponent(codeBottom);
+        codeArea.resetToPreferredSizes();
+
+        JPanel gameArea = new JPanel();
+        gameArea.setLayout(new GridLayout(2, 1));
+
+        JPanel shop = new JPanel();
+        shop.setLayout(new GridLayout(3, 8));
+        for (int i = 0; i < 24; i++) {
+            JLabel shopItem = new JLabel(" buy! ");
+            shop.add(shopItem);
+        }
+
+        JPanel battle = new JPanel();
+        battle.setLayout(new GridLayout(2, 3));
+        JLabel monsters = new JLabel("Monsters here");
+        battle.add(monsters);
+
+        gameArea.add(battle);
+        gameArea.add(shop);
 
         frame.add(codeArea);
+        frame.add(gameArea);
 
         frame.repaint();
         frame.revalidate();
