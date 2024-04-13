@@ -7,12 +7,6 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Properties;
 
-import org.python.core.Py;
-import org.python.core.PyObject;
-import org.python.core.PyString;
-import org.python.core.PySystemState;
-import org.python.util.PythonInterpreter;
-
 public class ChallengeControl {
 
     private final static String[] urls = {"HelloWorld","sphere","trig","tree_identifier"};
@@ -51,20 +45,20 @@ public class ChallengeControl {
         String[] cmd = new String[]{"python", pythonScriptPath};
         
         // Use ProcessBuilder to start a new process running the Python script
-        ProcessBuilder pb = new ProcessBuilder(cmd);
+        ProcessBuilder builder = new ProcessBuilder(cmd);
         
         try {
-            Process p = pb.start();
+            Process why = builder.start();
             
             // Capture and print the script's output
-            BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));
+            BufferedReader in = new BufferedReader(new InputStreamReader(why.getInputStream()));
             String line;
             while ((line = in.readLine()) != null) {
                 System.out.println(line);
             }
             
             // Wait for the process to finish and check the exit value
-            int exitValue = p.waitFor();
+            int exitValue = why.waitFor();
             if (exitValue == 0) {
                 System.out.println("Execution successful");
             } else {

@@ -52,12 +52,11 @@ class TestTreeID(unittest.TestCase):
         cls.target_file_present = Path(cls.target_file).is_file()
         if cls.target_file_present:
             for test in BASIC_TESTS:
-                cls.basic_procs.append(run(cls.target_file,input_= test[0] + "\n"
-                                                                test[1] + "\n"))
+                cls.basic_procs.append(run(cls.target_file,input_= test[0] + "\n" +test[1] + "\n"))
             for test in INVALID_L_TESTS:
                 cls.invalid_l_procs.append(run(cls.target_file,input_= test[0] + "\n"))
             for test in INVALID_M_TESTS:
-                cls.invalid_m_procs.append(run(cls.target_file,input_= test[0] + "\n"
+                cls.invalid_m_procs.append(run(cls.target_file,input_= test[0] + "\n" +
                                                                 test[1] + "\n"))
 
     def setUp(self):
