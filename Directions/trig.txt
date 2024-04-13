@@ -1,7 +1,7 @@
-#Types and Literals
-##Everything in Python has a *type*, each with a specific purpose
+Types and Literals
+Everything in Python has a *type*, each with a specific purpose
 
-##Commonly Used Types
+Commonly Used Types
 Int or integer: 1, -32, 0
 - Whole numbers
 Float: 3.14159265, 0.333333, 1.0, -2.5
@@ -15,7 +15,7 @@ tuple: (), (1, 2, 3), ("a", "b", "c")
 list: [], [1, 2, 3], ["a", "b", "c"]
 - Mutable (able to be changed) sequence of values
 
-#Variables
+Variables
 A *variable* is a name that correspondes with a specific value. We use an *assignment operator* (=) to assign this value to the name.
 
 For example:
@@ -25,7 +25,7 @@ a = 3
 a = "Hi"
 without any problems.
 
-#Arithmetic Operators
+Arithmetic Operators
 "+" --> Addition
 "-" --> Subtraction
 "*" --> Multiplication
@@ -38,15 +38,15 @@ without any problems.
 "**" --> Exponentiation
 - Put a number to a power
 
-###Examples:
+Examples:
 40 + 2 = 42
 5 - 1 = 4
 30 / 4 = 7
 30 % 4 = 2
 2**3 = 8
 
-#Functions
-###A *function* is code that performs a task
+Functions
+A *function* is code that performs a task
 Such as *print()* which you saw in the last assignment
 Let's say you wanted a funciton *increase()*, that would add 1 to any number. To start with, you would need to define the function:
 def increase(x):
@@ -60,7 +60,7 @@ What does return mean? Return marks the end of a function, as well as what is be
 Now how do we call this function? If we wanted to add 1 to the value 2, all we have to do is write:
 increase(2)
 
-#Practice:
+Practice:
 Write three functions: sqrt(x), hypotenuse(a, b), and deg_reduce(x).
 sqrt(x) should return the square root of x.
 hypotenuse(a,b) should return the value of the hypotenuse of a triangle with leg-lengths a & b.

@@ -4,8 +4,8 @@ Why Learn a Programming Language?
 Unfortunately for us, computers don't speak any human language. Instead, they understand binary code, which is a bunch of 1s and 0s. The solution: programming languages. Programming languages are instructions written in a form that we can understand, which are then converted into a structure that the computer can execute.
 
 Hello World!
-When learning a new programming language, it is customary to start with a program that writes out "Hello World!" In some languages, even this can be complicated, but Python makes it very easy with the *print()* fuction, which will print whatever we put between the parenthesis.
-So, if you want to print "Hello World!" all you need to do is write 
-print("Hello World!")
+When learning a new programming language, it is customary to start with a program that writes out "Hello World" In some languages, even this can be complicated, but Python makes it very easy with the *print()* fuction, which will print whatever we put between the parenthesis.
+So, if you want to print "Hello World" all you need to do is write 
+print("Hello World")
 
 Try it for yourself!
