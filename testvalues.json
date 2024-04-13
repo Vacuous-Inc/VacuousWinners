@@ -41,7 +41,16 @@
         [800, "80"]
     ]
 
-}
+},
+
+"BALANCED_TESTER":
+[
+    ["", "Parentheses are balanced!"],
+    ["(())", "Parentheses are balanced!"],
+    ["(", "Parentheses are not balanced!"],
+    ["(He)(llo", "Parentheses are not balanced!"],
+    ["(Wh(at's) up( ) y'all)", "Parentheses are balanced!"]
+]
 
 
 }
