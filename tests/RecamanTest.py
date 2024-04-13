@@ -6,7 +6,6 @@ from pathlib import Path
 import sys
 import unittest
 import json
-import math
 
 from proc import run, run_flake8
 
@@ -17,9 +16,8 @@ TARGET_FILE = 'Test_Code/trig.py'
 with open("testvalues.json") as fh:
     tests = json.load(fh)["TRIG"]
 
-SQRT_TESTS = [x for x in tests["SQRT"]]
-HYP_TESTS = [x for x in tests["HYPOTENUSE"]]
-DEG_TESTS = [x for x in tests["DEG_REDUCE"]]
+TESTS = [x for x in tests]
+
 
 
 def setScore(score,player):
@@ -41,9 +39,8 @@ class TestTrig(unittest.TestCase):
     player = ""
     target_file = TARGET_FILE
     target_present = False
-    sqrt_procs = []
-    hyp_procs = []
-    deg_procs = []
+    test_procs = []
+
 
     @classmethod
     def setUpClass(cls):
@@ -51,12 +48,8 @@ class TestTrig(unittest.TestCase):
         """This is run once to initialize class. """
         cls.target_file_present = Path(cls.target_file).is_file()
         if cls.target_file_present:
-            for test in SQRT_TESTS:
-                cls.sqrt_procs.append(run(cls.target_file,input_=f"{test[0]}\n"))
-            for test in HYP_TESTS:
-                cls.hyp_procs.append(run(cls.target_file,input_=f"{test[0]}\n"))
-            for test in DEG_TESTS:
-                cls.deg_procs.append(run(cls.target_file,input_=f"{test[0]}\n"))
+            for test in TESTS:
+                cls.test_procs.append(run(cls.target_file))
 
     def setUp(self):
         """This is run before each test. """
@@ -75,7 +68,7 @@ class TestTrig(unittest.TestCase):
         print(docstring)
         self.assertIsNotNone(docstring)
 
-    def test_sqrt(self):
+    def test_rec(self):
         '''
         for i,pr in enumerate(self.sqrt_procs):
             output = pr.stdout
@@ -93,65 +86,14 @@ class TestTrig(unittest.TestCase):
                       f"Actual: {actual}")'''
         num = 3
         try:
-            import Test_Code.trig as trig
+            import Test_Code.recaman as rec
         except ImportError:
             return
         for i in range(num):
-            expected = SQRT_TESTS[i][1]
-            actual = trig.sqrt(SQRT_TESTS[i][0])
-            if math.isclose(expected,actual):
+            expected = TESTS[i][1]
+            actual = rec.next_recaman(TESTS[i][0])
+            if expected == actual:
                 setScore(1,self.player)
-
-    def test_deg(self):
-        '''for i,pr in enumerate(self.deg_procs):
-            output = pr.stdout
-            output.lower()
-
-            expected = DEG_TESTS[i][1]
-            actual = output
-
-            if actual.find(expected) != -1:
-                setScore(1,self.player)
-            else:
-                print(f"Expected to find '{expected}' in response "
-                      f"(case-insensitive). \n"
-                      f"Actual: {actual}")'''
-        
-        num = 4
-        try:
-            import Test_Code.trig as trig
-        except ImportError:
-            return
-        for i in range(num):
-            expected = DEG_TESTS[i][1]
-            actual = trig.deg_reduce(DEG_TESTS[i][0])
-            if math.isclose(expected,actual):
-                setScore(1,self.player)
-
-    def test_hyp(self):
-        '''for i,pr in enumerate(self.hyp_procs):
-            output = pr.stdout
-            output.lower()
-
-            expected = HYP_TESTS[i][2]
-            actual = output
-
-            if actual.find(expected) != -1:
-                setScore(1,self.player)
-            else:
-                print(f"Expected to find '{expected}' in response "
-                      f"(case-insensitive). \n"
-                      f"Actual: {actual}") '''
-        num = 3
-        try:
-            import Test_Code.trig as trig
-        except ImportError:
-            return
-        for i in range(num):
-            expected = HYP_TESTS[i][2]
-            actual = trig.hypotenuse(HYP_TESTS[i][0],HYP_TESTS[i][1])
-            if math.isclose(expected,actual):
-                setScore(1,self.player)  
 
 
 
@@ -188,7 +130,7 @@ class TestTrig(unittest.TestCase):
         """Verify program runs without error (element_lookup.py). """
         ok_count = 0
         score = 0
-        all_procs = self.sqrt_procs + self.hyp_procs + self.deg_procs
+        all_procs = self.test_procs
         for proc in all_procs:
             if proc.returncode == 0:
                 score += 1

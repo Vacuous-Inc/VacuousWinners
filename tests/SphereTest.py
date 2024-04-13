@@ -15,11 +15,10 @@ ENCODING = 'UTF8'
 TARGET_FILE = 'Test_Code/trig.py'
 
 with open("testvalues.json") as fh:
-    tests = json.load(fh)["TRIG"]
+    tests = json.load(fh)["SPHERE_TESTS"]
 
-SQRT_TESTS = [x for x in tests["SQRT"]]
-HYP_TESTS = [x for x in tests["HYPOTENUSE"]]
-DEG_TESTS = [x for x in tests["DEG_REDUCE"]]
+PROG_TESTS = [x for x in tests["PROG"]]
+UNIT_TESTS = [x for x in tests["UNIT"]]
 
 
 def setScore(score,player):
@@ -36,14 +35,13 @@ else:
     results_path = 'results.json'
 
 
-class TestTrig(unittest.TestCase):
+class TestSphere(unittest.TestCase):
    
     player = ""
     target_file = TARGET_FILE
     target_present = False
-    sqrt_procs = []
-    hyp_procs = []
-    deg_procs = []
+    prog_procs = []
+    unit_procs = []
 
     @classmethod
     def setUpClass(cls):
@@ -51,12 +49,10 @@ class TestTrig(unittest.TestCase):
         """This is run once to initialize class. """
         cls.target_file_present = Path(cls.target_file).is_file()
         if cls.target_file_present:
-            for test in SQRT_TESTS:
-                cls.sqrt_procs.append(run(cls.target_file,input_=f"{test[0]}\n"))
-            for test in HYP_TESTS:
-                cls.hyp_procs.append(run(cls.target_file,input_=f"{test[0]}\n"))
-            for test in DEG_TESTS:
-                cls.deg_procs.append(run(cls.target_file,input_=f"{test[0]}\n"))
+            for test in PROG_TESTS:
+                cls.prog_procs.append(run(cls.target_file,input_=f"{test[0]}\n"))
+            for test in UNIT_TESTS:
+                cls.unit_procs.append(run(cls.target_file,input_=f"{test[0]}\n"))
 
     def setUp(self):
         """This is run before each test. """
@@ -75,56 +71,39 @@ class TestTrig(unittest.TestCase):
         print(docstring)
         self.assertIsNotNone(docstring)
 
-    def test_sqrt(self):
-        '''
-        for i,pr in enumerate(self.sqrt_procs):
+    def test_prog(self):
+        
+        for i,pr in enumerate(self.prog_procs):
             output = pr.stdout
             output.lower()
 
         
-            expected = SQRT_TESTS[i][1]
+            expected = PROG_TESTS[i][1]
             actual = output
 
-            if actual.find(expected) != -1:
-                setScore(1,self.player)
-            else:
-                print(f"Expected to find '{expected}' in response "
-                      f"(case-insensitive). \n"
-                      f"Actual: {actual}")'''
+            for i, a in enumerate(actual):
+                if a.find(expected[i]) != -1:
+                    setScore(1,self.player)
+                else:
+                    print(f"Expected to find '{expected}' in response "
+                        f"(case-insensitive). \n"
+                        f"Actual: {actual}")
+
+    def test_unit(self):
+        
         num = 3
         try:
-            import Test_Code.trig as trig
+            import Test_Code.sphere as sp
         except ImportError:
             return
         for i in range(num):
-            expected = SQRT_TESTS[i][1]
-            actual = trig.sqrt(SQRT_TESTS[i][0])
+            expected = UNIT_TESTS[i][1][0]
+            actual = sp.surface_area(UNIT_TESTS[i][0])
             if math.isclose(expected,actual):
                 setScore(1,self.player)
-
-    def test_deg(self):
-        '''for i,pr in enumerate(self.deg_procs):
-            output = pr.stdout
-            output.lower()
-
-            expected = DEG_TESTS[i][1]
-            actual = output
-
-            if actual.find(expected) != -1:
-                setScore(1,self.player)
-            else:
-                print(f"Expected to find '{expected}' in response "
-                      f"(case-insensitive). \n"
-                      f"Actual: {actual}")'''
-        
-        num = 4
-        try:
-            import Test_Code.trig as trig
-        except ImportError:
-            return
         for i in range(num):
-            expected = DEG_TESTS[i][1]
-            actual = trig.deg_reduce(DEG_TESTS[i][0])
+            expected = UNIT_TESTS[i][1][1]
+            actual = sp.volume(UNIT_TESTS[i][0])
             if math.isclose(expected,actual):
                 setScore(1,self.player)
 
@@ -188,7 +167,7 @@ class TestTrig(unittest.TestCase):
         """Verify program runs without error (element_lookup.py). """
         ok_count = 0
         score = 0
-        all_procs = self.sqrt_procs + self.hyp_procs + self.deg_procs
+        all_procs = self.prog_procs + self.unit_procs
         for proc in all_procs:
             if proc.returncode == 0:
                 score += 1

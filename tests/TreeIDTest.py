@@ -12,14 +12,14 @@ from proc import run, run_flake8
 
 TIMEOUT = 15  # seconds
 ENCODING = 'UTF8'
-TARGET_FILE = 'Test_Code/trig.py'
+TARGET_FILE = 'Test_Code/tree_identifier.py'
 
 with open("testvalues.json") as fh:
-    tests = json.load(fh)["TRIG"]
+    tests = json.load(fh)["TREE_IDENTIFIER_TESTER"]
 
-SQRT_TESTS = [x for x in tests["SQRT"]]
-HYP_TESTS = [x for x in tests["HYPOTENUSE"]]
-DEG_TESTS = [x for x in tests["DEG_REDUCE"]]
+BASIC_TESTS = [x for x in tests["BASIC"]]
+INVALID_L_TESTS = [x for x in tests["INVALID_LEAVES"]]
+INVALID_M_TESTS = [x for x in tests["INVALID_MID"]]
 
 
 def setScore(score,player):
@@ -36,14 +36,14 @@ else:
     results_path = 'results.json'
 
 
-class TestTrig(unittest.TestCase):
+class TestTreeID(unittest.TestCase):
    
     player = ""
     target_file = TARGET_FILE
     target_present = False
-    sqrt_procs = []
-    hyp_procs = []
-    deg_procs = []
+    basic_procs = []
+    invalid_l_procs = []
+    invalid_m_procs = []
 
     @classmethod
     def setUpClass(cls):
@@ -51,12 +51,14 @@ class TestTrig(unittest.TestCase):
         """This is run once to initialize class. """
         cls.target_file_present = Path(cls.target_file).is_file()
         if cls.target_file_present:
-            for test in SQRT_TESTS:
-                cls.sqrt_procs.append(run(cls.target_file,input_=f"{test[0]}\n"))
-            for test in HYP_TESTS:
-                cls.hyp_procs.append(run(cls.target_file,input_=f"{test[0]}\n"))
-            for test in DEG_TESTS:
-                cls.deg_procs.append(run(cls.target_file,input_=f"{test[0]}\n"))
+            for test in BASIC_TESTS:
+                cls.basic_procs.append(run(cls.target_file,input_=f"{test[0]}\n"
+                                                                f"{test[1]}\n"))
+            for test in INVALID_L_TESTS:
+                cls.invalid_l_procs.append(run(cls.target_file,input_=f"{test[0]}\n"))
+            for test in INVALID_M_TESTS:
+                cls.invalid_m_procs.append(run(cls.target_file,input_=f"{test[0]}\n"
+                                                                f"{test[1]}\n"))
 
     def setUp(self):
         """This is run before each test. """
@@ -75,14 +77,14 @@ class TestTrig(unittest.TestCase):
         print(docstring)
         self.assertIsNotNone(docstring)
 
-    def test_sqrt(self):
-        '''
-        for i,pr in enumerate(self.sqrt_procs):
+    def test_basic(self):
+
+        for i,pr in enumerate(self.basic_procs):
             output = pr.stdout
             output.lower()
 
         
-            expected = SQRT_TESTS[i][1]
+            expected = BASIC_TESTS[i][2]
             actual = output
 
             if actual.find(expected) != -1:
@@ -90,24 +92,14 @@ class TestTrig(unittest.TestCase):
             else:
                 print(f"Expected to find '{expected}' in response "
                       f"(case-insensitive). \n"
-                      f"Actual: {actual}")'''
-        num = 3
-        try:
-            import Test_Code.trig as trig
-        except ImportError:
-            return
-        for i in range(num):
-            expected = SQRT_TESTS[i][1]
-            actual = trig.sqrt(SQRT_TESTS[i][0])
-            if math.isclose(expected,actual):
-                setScore(1,self.player)
+                      f"Actual: {actual}")
 
-    def test_deg(self):
-        '''for i,pr in enumerate(self.deg_procs):
+    def test_invalid_l(self):
+        for i,pr in enumerate(self.invalid_l_procs):
             output = pr.stdout
             output.lower()
 
-            expected = DEG_TESTS[i][1]
+            expected = INVALID_L_TESTS[i][1]
             actual = output
 
             if actual.find(expected) != -1:
@@ -115,25 +107,14 @@ class TestTrig(unittest.TestCase):
             else:
                 print(f"Expected to find '{expected}' in response "
                       f"(case-insensitive). \n"
-                      f"Actual: {actual}")'''
-        
-        num = 4
-        try:
-            import Test_Code.trig as trig
-        except ImportError:
-            return
-        for i in range(num):
-            expected = DEG_TESTS[i][1]
-            actual = trig.deg_reduce(DEG_TESTS[i][0])
-            if math.isclose(expected,actual):
-                setScore(1,self.player)
+                      f"Actual: {actual}")
 
     def test_hyp(self):
-        '''for i,pr in enumerate(self.hyp_procs):
+        for i,pr in enumerate(self.invalid_m_procs):
             output = pr.stdout
             output.lower()
 
-            expected = HYP_TESTS[i][2]
+            expected = INVALID_M_TESTS[i][2]
             actual = output
 
             if actual.find(expected) != -1:
@@ -141,17 +122,7 @@ class TestTrig(unittest.TestCase):
             else:
                 print(f"Expected to find '{expected}' in response "
                       f"(case-insensitive). \n"
-                      f"Actual: {actual}") '''
-        num = 3
-        try:
-            import Test_Code.trig as trig
-        except ImportError:
-            return
-        for i in range(num):
-            expected = HYP_TESTS[i][2]
-            actual = trig.hypotenuse(HYP_TESTS[i][0],HYP_TESTS[i][1])
-            if math.isclose(expected,actual):
-                setScore(1,self.player)  
+                      f"Actual: {actual}")
 
 
 
@@ -188,7 +159,7 @@ class TestTrig(unittest.TestCase):
         """Verify program runs without error (element_lookup.py). """
         ok_count = 0
         score = 0
-        all_procs = self.sqrt_procs + self.hyp_procs + self.deg_procs
+        all_procs = self.basic_procs + self.invalid_m_procs + self.invalid_l_procs
         for proc in all_procs:
             if proc.returncode == 0:
                 score += 1
