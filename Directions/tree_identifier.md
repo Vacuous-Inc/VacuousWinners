@@ -1,0 +1,74 @@
+#Boolean Logic
+As previously mentioned, booleans have a value of either True or False. We can then put them into boolean expressions.
+Examples:
+True    =   True
+False   =   False
+not False   =   True
+not True    =   False
+False and True  =   False
+False and False =   False
+True and True   =   True
+True or True    =   True
+True or False   =   True
+False or False  =   False
+
+The “and” function (&&)
+- Only needs one false to be false
+The “or” function (||)
+- Only needs one true to be true
+The “not” function (!)
+- Reverses the state of an expression
+
+##Comparison Operators
+Compare 2 objects
+
+Examples:
+== --> equals (are the values the same)
+> --> greater than
+< --> less than
+>= --> greater than or equal to
+<= --> less than or equal to
+!= --> not equal to
+
+So 5 > 6 is False
+8 > 6 is True
+"Hello" != "Sup" is True
+
+#If, Else, and Elif Statements
+Now it's time for everyone's favorite part of programming, if-else statements. These work with boolean expressions to determine which branch will execute. Let's start with a simple if else statement. Let's say we want tell the user whether or not a is greater than b. In that case, we would write:
+
+if(a > b):
+    print(f"{a} is greater than {b}!")
+else:
+    print(f"{a} is less than {b}!")
+
+The program will check to see whether the first expression is true and will execute the code within the *if* statement if it is. Otherwise, it will execute the code in the *else* statement.
+
+###Elif statements
+But sometimes we need to check multiple expressions in one go. That's where the *elif* statement comes in. Basically, it will give Python another expression to check, after it has checked the *if* statement.
+Let's say we want to write a code that tells the user what their grade is. In that case, we would write:
+if(a >= 90):
+    print("Your grade is an A!")
+elif(a >= 80):
+    print("Your grade is a B!")
+elif(a >= 70):
+    print("Your grade is a C!")
+elif(a >= 60):
+    print("Your grade us a D!")
+else:
+    print("Your grade is an F!")
+
+If we only used multiple *if* statements, then a value of 100 would cause the following output:
+Your grade is an A!
+Your grade is a B!
+Your grade is a C!
+Your grade is a D!
+
+Do you know why?
+
+#Try it Yourself!
+tree_identifier will use if, else, and elif statements in order to figure out what type of tree the user is inputting. First, ask the user if it has needles ("n") or leaves "l". Then, if it has needles, ask if the needles are individual ("i") or clustered ("c"). If it's invidual, it's a Spruce! If they're clustered, it's a Pine! If the user doesn't give a valid choice for needle type, print "Invalid choice for individual or clustered!"
+
+If the tree has leaves, ask the user whether the leaves are simple ("s") or compound ("c"). If they're simple, it's a Maple! If they're compound, it's an Ash! If the user doesn't give a valid choice for leaf type, print "Invalid choice for simple or compound!"
+
+If the user doesn't give a valid choice for leaves, print "Invalid choice for leaves!"

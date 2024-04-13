@@ -1,0 +1,14 @@
+#Final Excersise!
+Congrats on making it all this way!
+
+Unfortunately for you, I'm not gonna give you a lot of instructions.
+
+First, prompt the user for a string containing parenthesis. Then have a function, balanced(s), return True if the parenthesis are balanced, and False otherwise. Finally, print "The parenthesis are balanced!" if the parethesis are balanced, and "The parenthesis are not balanced!" otherwise.
+
+Examples of strings with balanced parenthesis:
+"(Hello)"
+"(What's(up (with (you?))))"
+
+Examples of strings with unbalanced parenthesis:
+"("
+"(Vacu(ous Winners)"
