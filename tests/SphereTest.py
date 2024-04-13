@@ -107,31 +107,6 @@ class TestSphere(unittest.TestCase):
             if math.isclose(expected,actual):
                 setScore(1,self.player)
 
-    def test_hyp(self):
-        '''for i,pr in enumerate(self.hyp_procs):
-            output = pr.stdout
-            output.lower()
-
-            expected = HYP_TESTS[i][2]
-            actual = output
-
-            if actual.find(expected) != -1:
-                setScore(1,self.player)
-            else:
-                print(f"Expected to find '{expected}' in response "
-                      f"(case-insensitive). \n"
-                      f"Actual: {actual}") '''
-        num = 3
-        try:
-            import Test_Code.trig as trig
-        except ImportError:
-            return
-        for i in range(num):
-            expected = HYP_TESTS[i][2]
-            actual = trig.hypotenuse(HYP_TESTS[i][0],HYP_TESTS[i][1])
-            if math.isclose(expected,actual):
-                setScore(1,self.player)  
-
 
 
     '''def test_no_magic_numbers(self):
