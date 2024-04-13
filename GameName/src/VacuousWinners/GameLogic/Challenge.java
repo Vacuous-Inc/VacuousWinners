@@ -1,7 +1,10 @@
 package VacuousWinners.GameLogic;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Challenge {
@@ -32,35 +35,45 @@ public class Challenge {
     
     public String loadDesc(){
         String out = "";
-        Scanner file;
-        try{
-            file = new Scanner(desc);
-        }catch (FileNotFoundException e){
-            System.out.println("Error");
-            return out;
-        }
+        BufferedReader file;
 
-        while (file.hasNextLine()){
-            out += file.nextLine();
+        try{
+            file = new BufferedReader(new FileReader(desc));
+    
+        
+        while (file.ready()){
+            out += file.readLine() + "\n";
+            
         }
-        file.close();
+       //out = file.readLine();
+            file.close();
+        }catch (IOException e){
+            System.out.println("Error "+prompt);
+            return out;
+        };
+        
         return out;
     }
 
     public String loadPrompt(){
         String out = "";
-        Scanner file;
-        try{
-            file = new Scanner(prompt);
-        }catch (FileNotFoundException e){
-            System.out.println("Error");
-            return out;
-        }
+        BufferedReader file;
 
-        while (file.hasNextLine()){
-            out += file.nextLine();
+        try{
+            file = new BufferedReader(new FileReader(prompt));
+    
+        
+        while (file.ready()){
+            out += file.readLine() + "\n";
+            
         }
-        file.close();
+       //out = file.readLine();
+            file.close();
+        }catch (IOException e){
+            System.out.println("Error "+prompt);
+            return out;
+        };
+        System.out.println(out);
         return out;
     }
 
