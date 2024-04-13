@@ -2,8 +2,6 @@ package VacuousWinners;
 
 import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -13,7 +11,6 @@ import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 import VacuousWinners.ImageHandler.ImageName;
 
 public class TitleScreen extends Screen {
@@ -50,17 +47,4 @@ public class TitleScreen extends Screen {
         frame.repaint();
         frame.revalidate();
     }
-
-    public class JPanelWithBackground extends JPanel {
-
-        private Image backgroundImage;
-        public JPanelWithBackground(ImageName name) throws IOException {
-          backgroundImage = ImageHandler.getImage(name);
-        }
-      
-        public void paintComponent(Graphics g) {
-          super.paintComponent(g);
-          g.drawImage(backgroundImage, 0, 0, this);
-        }
-      }
 }

@@ -9,8 +9,10 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -19,6 +21,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTextArea;
 import VacuousWinners.GameLogic.*;
+import VacuousWinners.ImageHandler.ImageName;
 
 public class GameScreen extends Screen{
     private ChallengeControl gamecontrol = new ChallengeControl();
@@ -86,21 +89,25 @@ public class GameScreen extends Screen{
         codeArea.resetToPreferredSizes();
 
         JPanel gameArea = new JPanel();
-        gameArea.setLayout(new GridLayout(2, 1));
+        gameArea.setLayout(new GridLayout(2, 2));
 
         JPanel shop = new JPanel();
-        shop.setLayout(new GridLayout(3, 8));
-        for (int i = 0; i < 24; i++) {
-            JLabel shopItem = new JLabel(" buy! ");
-            shop.add(shopItem);
+        shop.setLayout(new GridLayout(3, 6));
+        for (int i = 0; i < 3; i++) {
+            for (int index = 0; index < 6; index++) {
+                JPanel shopIcon = new JPanelWithBackground(ImageName.SHOP_EMPTY);
+                shop.add(shopIcon);
+            }
         }
 
-        JPanel battle = new JPanel();
-        battle.setLayout(new GridLayout(2, 3));
-        JLabel monsters = new JLabel("Monsters here");
-        battle.add(monsters);
 
-        gameArea.add(battle);
+        
+        JPanelWithBackground player = new JPanelWithBackground(ImageName.PLAYER);
+        JPanelWithBackground monster = new JPanelWithBackground(ImageName.MONSTER);
+
+
+        gameArea.add(player);
+        gameArea.add(monster);
         gameArea.add(shop);
 
         frame.add(codeArea);
