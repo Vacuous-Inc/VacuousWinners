@@ -69,15 +69,23 @@
 ]},
 
 "TREE_IDENTIFIER_TESTER":
+
+{
+    "BASIC" :
 [
     ["n", "i", "Spruce"],
     ["n", "c", "Pine"],
     ["l", "s", "Maple"],
-    ["l", "c", "Ash"],
+    ["l", "c", "Ash"]
+],
+"INVALID_LEAVES" :[
+     ["wtf", "Invalid choice for leaves!"]],
+
+"INVALID_MID" :  [
     ["n", "yo", "Invalid choice for individual or clustered!"],
-    ["l", "yo", "Invalid choice for simple or compound!"],
-    ["wtf", "Invalid choice for leaves!"]
+    ["l", "yo", "Invalid choice for simple or compound!"]
 ]
+}
 
 
 }
