@@ -36,6 +36,7 @@ public class Challenge {
         try{
             file = new Scanner(desc);
         }catch (FileNotFoundException e){
+            System.out.println("Error");
             return out;
         }
 
@@ -52,6 +53,7 @@ public class Challenge {
         try{
             file = new Scanner(prompt);
         }catch (FileNotFoundException e){
+            System.out.println("Error");
             return out;
         }
 
