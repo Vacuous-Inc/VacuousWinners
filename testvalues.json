@@ -41,7 +41,27 @@
         [800, "80"]
     ]
 
-}
+},
+
+"BALANCED_TESTER":
+[
+    ["", "Parentheses are balanced!"],
+    ["(())", "Parentheses are balanced!"],
+    ["(", "Parentheses are not balanced!"],
+    ["(He)(llo", "Parentheses are not balanced!"],
+    ["(Wh(at's) up( ) y'all)", "Parentheses are balanced!"]
+],
+
+"TREE_IDENTIFIER_TESTER":
+[
+    ["n", "i", "Spruce"],
+    ["n", "c", "Pine"],
+    ["l", "s", "Maple"],
+    ["l", "c", "Ash"],
+    ["n", "yo", "Invalid choice for individual or clustered!"],
+    ["l", "yo", "Invalid choice for simple or compound!"],
+    ["wtf", "Invalid choice for leaves!"]
+]
 
 
 }
