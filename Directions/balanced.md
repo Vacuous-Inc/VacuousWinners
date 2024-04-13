@@ -6,3 +6,7 @@ Unfortunately for you, I'm not gonna give you a lot of instructions. First, prom
 Examples of strings with balanced parenthesis:
 "(Hello)"
 "(What's(up (with (you?))))"
+
+Examples of strings with unbalanced parenthesis:
+"("
+"(Vacu(ous Winners)"
