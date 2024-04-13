@@ -66,7 +66,7 @@ Your grade is a D!
 
 Do you know why?
 
-#Try it Yourself!
+Try it Yourself!
 tree_identifier will use if, else, and elif statements in order to figure out what type of tree the user is inputting. First, ask the user if it has needles ("n") or leaves "l". Then, if it has needles, ask if the needles are individual ("i") or clustered ("c"). If it's invidual, it's a Spruce! If they're clustered, it's a Pine! If the user doesn't give a valid choice for needle type, print "Invalid choice for individual or clustered!"
 
 If the tree has leaves, ask the user whether the leaves are simple ("s") or compound ("c"). If they're simple, it's a Maple! If they're compound, it's an Ash! If the user doesn't give a valid choice for leaf type, print "Invalid choice for simple or compound!"
