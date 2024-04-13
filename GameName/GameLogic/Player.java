@@ -65,6 +65,10 @@ public class Player {
         this.coins = coins;
     }
 
+    public void addCoins(int coins){
+        this.coins += coins;
+    }
+
     public boolean levelUp() {
         if (points == 3) {
             points = 0;
